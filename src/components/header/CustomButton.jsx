@@ -1,11 +1,12 @@
-import { Badge, Box, Button, styled, Typography } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LoginDialog from "../login/LoginDialog";
+
 import { useContext, useState } from "react";
 import { DataContext } from "../../context/dataprovider";
 import Profile from "./Profile";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import LoginDialog from "../Login/loginDialog";
+import { Badge, Box, Button, styled, Typography } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Wrapper = styled(Box)(({ theme }) => ({
   display: "flex",

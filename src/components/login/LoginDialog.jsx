@@ -54,7 +54,7 @@ const loginInitialValues = {
   username: "",
   password: "",
 };
-function loginDialog({ openDialog, setOpenDialog }) {
+function LoginDialog({ openDialog, setOpenDialog }) {
   const [openSinup, setOpenSinup] = useState(false);
   const [sinupValues, setSinupValues] = useState(sinupInitialValues);
   const [loginValues, setLoginValues] = useState(loginInitialValues);
@@ -233,4 +233,4 @@ function loginDialog({ openDialog, setOpenDialog }) {
   );
 }
 
-export default loginDialog;
+export default LoginDialog;
