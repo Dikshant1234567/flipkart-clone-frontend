@@ -4,9 +4,9 @@ import { DataContext } from "../../context/dataprovider";
 import Profile from "./Profile";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import LoginDialog from "../Login/loginDialog";
 import { Badge, Box, Button, styled, Typography } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LoginBox from "../login/LoginBox"
 
 const Wrapper = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -62,7 +62,7 @@ function CustomButton() {
           <Typography style={{ marginLeft: "10px" }}>Cart</Typography>
         </Box>
       </Link>
-      <LoginDialog openDialog={openDialog} setOpenDialog={setOpenDialog} />
+      <LoginBox openDialog={openDialog} setOpenDialog={setOpenDialog} />
     </Wrapper>
   );
 }
