@@ -1,6 +1,6 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LoginDialog from "../login/loginDialog";
+import LoginBox from "../login/LoginBox";
 import { useContext, useState } from "react";
 import { DataContext } from "../../context/dataprovider";
 import Profile from "./Profile";
@@ -74,7 +74,7 @@ function SmallScreenCustomMenu() {
           <Typography>Cart</Typography>
         </Box>
       </Link>
-      <LoginDialog openDialog={openDialog} setOpenDialog={setOpenDialog} />
+      <LoginBox openDialog={openDialog} setOpenDialog={setOpenDialog} />
     </Wrapper>
   );
 }
