@@ -1,17 +1,20 @@
 import { Children, createContext, useState } from "react";
 
-export const DataContext = createContext(null)
+export const DataContext = createContext(null);
 
+const DataProvider = ({ children }) => {
+  const [account, setAccount] = useState();
 
-const DataProvider =({children})=>{
-const [account , setAccount] = useState()
+  return (
+    <DataContext.Provider
+      value={{
+        account,
+        setAccount,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
+  );
+};
 
-    return (
-        <DataContext.Provider
-        value={{
-            account,setAccount
-        }}> {children}</DataContext.Provider>
-    )
-}
-
-export default DataProvider
+export default DataProvider;

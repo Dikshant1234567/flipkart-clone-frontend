@@ -16,6 +16,7 @@ import { getProductDetails } from "../../redux/action/productAction";
 import ActiionDetails from "./ActiionDetails";
 import ProductDetails from "./ProductDetails";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import Loader from "../Loader";
 
 const Components = styled(Box)`
   margin-top: 60px;
@@ -97,106 +98,110 @@ function DetailView() {
   const { product } = useSelector((state) => state.getProductDetail);
   return (
     <Components id="details-product">
-      <ActionContainer id="product_container" >
-        {product && <ActiionDetails product={product} />}
-      </ActionContainer>
-      {product && (
-        <InfoContainer id="detail-container">
-          <Wrapper id="product-details">
-            <ProductTitle variant="h6">
-              {product.title?.longTitle.toUpperCase()}
-            </ProductTitle>
-            <Typography
-              style={{ color: "#1d0f0f", fontSize: 17, fontWeight: 600 }}
-            >
-              {product.tagline}
-            </Typography>
-            <Box style={{ display: "flex" }}>
-              <Rating>6 Ratings & 3 Reviews</Rating>
-              <img
-                width="80px"
-                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
-                alt="assured"
-              />
-            </Box>
-            <Box style={{ display: "flex", alignItems: "baseline" }}>
-              <Typography style={{ fontSize: 22, fontWeight: 600 }}>
-                ₹{product.price?.cost}
+      {!product ? (
+        <Loader />
+      ) : (
+        <>
+          <ActionContainer id="product_container">
+            {product && <ActiionDetails product={product} />}
+          </ActionContainer>
+          <InfoContainer id="detail-container">
+            <Wrapper id="product-details">
+              <ProductTitle variant="h6">
+                {product.title?.longTitle.toUpperCase()}
+              </ProductTitle>
+              <Typography
+                style={{ color: "#1d0f0f", fontSize: 17, fontWeight: 600 }}
+              >
+                {product.tagline}
               </Typography>
-              <Typography style={{ margin: "0 10px", fontSize: 16 }}>
-                {product.price?.discount}
-              </Typography>
+              <Box style={{ display: "flex" }}>
+                <Rating>6 Ratings & 3 Reviews</Rating>
+                <img
+                  width="80px"
+                  src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
+                  alt="assured"
+                />
+              </Box>
+              <Box style={{ display: "flex", alignItems: "baseline" }}>
+                <Typography style={{ fontSize: 22, fontWeight: 600 }}>
+                  ₹{product.price?.cost}
+                </Typography>
+                <Typography style={{ margin: "0 10px", fontSize: 16 }}>
+                  {product.price?.discount}
+                </Typography>
+                <Typography
+                  style={{
+                    fontSize: 14,
+                    color: "#878787",
+                    textDecoration: "line-through",
+                  }}
+                >
+                  ₹{product.price?.mrp}
+                </Typography>
+              </Box>
               <Typography
                 style={{
-                  fontSize: 14,
-                  color: "#878787",
-                  textDecoration: "line-through",
+                  margin: "10px 0 0 10px",
+                  color: "green",
+                  fontSize: 18,
+                  fontWeight: 600,
                 }}
               >
-                ₹{product.price?.mrp}
+                Available offers
               </Typography>
-            </Box>
-            <Typography
-              style={{
-                margin: "10px 0 0 10px",
-                color: "green",
-                fontSize: 18,
-                fontWeight: 600,
-              }}
-            >
-              Available offers
-            </Typography>
-            <List>
-              <ListItemFont>
-                <OfferIcon />
-                Special PriceExtra ₹1749 off(price inclusive of discount) T&C
-              </ListItemFont>
-              <ListItemFont>
-                <OfferIcon />
-                Bank Offer5% Cashback on Flipkart Axis Bank Card T&C
-              </ListItemFont>
-              <ListItemFont>
-                <OfferIcon />
-                Buy this product and Get Extra ₹50 Off on Select Fans T&C
-              </ListItemFont>
-              <ListItemFont>
-                <OfferIcon />
-                Partner OfferPurchase now & get 1 surprise cashback coupon in
-                Future Know More
-              </ListItemFont>
-            </List>
+              <List>
+                <ListItemFont>
+                  <OfferIcon />
+                  Special PriceExtra ₹1749 off(price inclusive of discount) T&C
+                </ListItemFont>
+                <ListItemFont>
+                  <OfferIcon />
+                  Bank Offer5% Cashback on Flipkart Axis Bank Card T&C
+                </ListItemFont>
+                <ListItemFont>
+                  <OfferIcon />
+                  Buy this product and Get Extra ₹50 Off on Select Fans T&C
+                </ListItemFont>
+                <ListItemFont>
+                  <OfferIcon />
+                  Partner OfferPurchase now & get 1 surprise cashback coupon in
+                  Future Know More
+                </ListItemFont>
+              </List>
 
-            <Table>
-              <TableBody>
-                <TableRow>
-                  <TableCellStyle>Warranty</TableCellStyle>
-                  <TableCellInfo>
-                    2 Year Warranty (1 year standard warranty + 1 year
-                    additional warranty from the date of purchase made by the
-                    customer.)
-                  </TableCellInfo>
-                </TableRow>
+              <Table>
+                <TableBody>
+                  <TableRow>
+                    <TableCellStyle>Warranty</TableCellStyle>
+                    <TableCellInfo>
+                      2 Year Warranty (1 year standard warranty + 1 year
+                      additional warranty from the date of purchase made by the
+                      customer.)
+                    </TableCellInfo>
+                  </TableRow>
 
-                <TableRow>
-                  <TableCellStyle>Delivery</TableCellStyle>
-                  <TableCellInfo>
-                    {new Date().getDate().toString()}
-                  </TableCellInfo>
-                </TableRow>
-                <TableRow>
-                  <SupperCoinImage
-                    src="	https://rukminim1.flixcart.com/lockin/400/400/images/CCO__PP_2019-07-14.png?q=50"
-                    alt=""
-                  />
-                </TableRow>
-                <TableRow>
-                  <TableCellStyle>Description</TableCellStyle>
-                  <TableCellInfo>{product.description}</TableCellInfo>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Wrapper>
-        </InfoContainer>
+                  <TableRow>
+                    <TableCellStyle>Delivery</TableCellStyle>
+                    <TableCellInfo>
+                      {new Date().getDate().toString()}
+                    </TableCellInfo>
+                  </TableRow>
+                  <TableRow>
+                    <SupperCoinImage
+                      src="	https://rukminim1.flixcart.com/lockin/400/400/images/CCO__PP_2019-07-14.png?q=50"
+                      alt=""
+                    />
+                  </TableRow>
+                  <TableRow>
+                    <TableCellStyle>Description</TableCellStyle>
+                    <TableCellInfo>{product.description}</TableCellInfo>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Wrapper>
+          </InfoContainer>
+        </>
       )}
     </Components>
   );
